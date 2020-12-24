@@ -71,6 +71,62 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-hexo-blog-in-Mac" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/12/24/hexo-blog-in-Mac/" class="article-date">
+  <time class="dt-published" datetime="2020-12-24T02:07:08.000Z" itemprop="datePublished">2020-12-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/12/24/hexo-blog-in-Mac/">hexo-blog-in-Mac</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>官网 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">https://hexo.io/zh-cn/docs/</a> </p>
+<p>安装 git</p>
+<p>安装node.js, <code>brew install node</code></p>
+<p>安装hexo， <code>npm install -g hexo-cli</code></p>
+<p>创建个人博客目录 <code>mkdir MyBlog</code></p>
+<p><code>hexo init</code></p>
+<p><code>hexo s</code>, Hexo is running at <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> . Press Ctrl+C to stop. 打开网页，</p>
+<p>博客关联到github仓库：配置_config.yml文件。 </p>
+<p><img src="/.com//cbl/MyBlog/source/_posts/hexo-blog-in-Mac/1.png" alt="1"></p>
+<p>产生静态网页： <code>hexo g</code></p>
+<p>部署到GitHub page上：<code> hexo d</code></p>
+<p>#出现错误1：</p>
+<p>INFO Validating config</p>
+<p>ERROR Deployer not found: git</p>
+<p>解决办法： <code>npm install --save hexo-deployer-git</code></p>
+<p>#出现错误2</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">*** Please tell me who you are.</span><br><span class="line"></span><br><span class="line">Run</span><br><span class="line"></span><br><span class="line"> git config --global user.email &quot;you@example.com&quot;</span><br><span class="line"></span><br><span class="line"> git config --global user.name &quot;Your Name&quot;</span><br><span class="line"></span><br><span class="line">to set your account&#39;s default identity.</span><br><span class="line"></span><br><span class="line">Omit --global to set the identity only in this repository.</span><br><span class="line"></span><br><span class="line">fatal: unable to auto-detect email address (got &#39;cbl@bogon.(none)&#39;)</span><br><span class="line"></span><br><span class="line">error: src refspec HEAD does not match any</span><br><span class="line"></span><br><span class="line">error: failed to push some refs to &#39;https:&#x2F;&#x2F;github.com&#x2F;CBLkfit&#x2F;CBLkfit.github.io&#39;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>解决办法：设置好git config</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/24/hexo-blog-in-Mac/" data-id="ckizpwl5k0000c7fy0dodgnbi" data-title="hexo-blog-in-Mac" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Transformers预训练模型的使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2020/12/24/Transformers%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/" class="article-date">
@@ -133,70 +189,6 @@
     </div>
     <footer class="article-footer">
       <a data-url="http://example.com/2020/12/24/Transformers%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="ckj27868r0000u8fy9w6dbzy1" data-title="Transformers预训练模型的使用" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hexo-blog-in-Mac" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/12/22/hexo-blog-in-Mac/" class="article-date">
-  <time class="dt-published" datetime="2020-12-22T08:12:20.000Z" itemprop="datePublished">2020-12-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/12/22/hexo-blog-in-Mac/">hexo blog in Mac</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>官网 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">https://hexo.io/zh-cn/docs/</a> </p>
-<p>安装 git</p>
-<p>安装node.js, brew install node</p>
-<p>安装hexo， npm install -g hexo-cli</p>
-<p>创建个人博客目录 mkdir MyBlog</p>
-<p>hexo init</p>
-<p>hexo s, Hexo is running at <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> . Press Ctrl+C to stop. 打开网页，</p>
-<p>博客关联到github仓库：配置_config.yml文件。 </p>
-<p>![截屏2020-12-22 下午4.15.59](/Users/cbl/Library/Application Support/typora-user-images/截屏2020-12-22 下午4.15.59.png)</p>
-<p>产生静态网页： hexo g</p>
-<p>部署到GitHub page上： hexo d</p>
-<p>#出现错误1：</p>
-<p>INFO Validating config</p>
-<p>ERROR Deployer not found: git</p>
-<p>解决办法： npm install –save hexo-deployer-git</p>
-<p>#出现错误2</p>
-<p>*** Please tell me who you are.</p>
-<p>Run</p>
-<p> git config –global user.email “<a href="mailto:&#121;&#x6f;&#x75;&#x40;&#101;&#x78;&#97;&#x6d;&#x70;&#x6c;&#x65;&#x2e;&#x63;&#111;&#109;">&#121;&#x6f;&#x75;&#x40;&#101;&#x78;&#97;&#x6d;&#x70;&#x6c;&#x65;&#x2e;&#x63;&#111;&#109;</a>“</p>
-<p> git config –global user.name “Your Name”</p>
-<p>to set your account’s default identity.</p>
-<p>Omit –global to set the identity only in this repository.</p>
-<p>fatal: unable to auto-detect email address (got ‘cbl@bogon.(none)’)</p>
-<p>error: src refspec HEAD does not match any</p>
-<p>error: failed to push some refs to ‘<a target="_blank" rel="noopener" href="https://github.com/CBLkfit/CBLkfit.github.io&#39;">https://github.com/CBLkfit/CBLkfit.github.io&#39;</a></p>
-<p>解决办法：设置好git config</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/22/hexo-blog-in-Mac/" data-id="ckizpwl5k0000c7fy0dodgnbi" data-title="hexo blog in Mac" class="article-share-link">Share</a>
       
       
       
@@ -286,11 +278,11 @@
       <ul>
         
           <li>
-            <a href="/2020/12/24/Transformers%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/">Transformers预训练模型的使用</a>
+            <a href="/2020/12/24/hexo-blog-in-Mac/">hexo-blog-in-Mac</a>
           </li>
         
           <li>
-            <a href="/2020/12/22/hexo-blog-in-Mac/">hexo blog in Mac</a>
+            <a href="/2020/12/24/Transformers%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/">Transformers预训练模型的使用</a>
           </li>
         
           <li>
