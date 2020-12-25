@@ -6,15 +6,15 @@
   
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="RoBERTa UsageLoad RoBERTa12345678# Download roberta.large modelwget https:&#x2F;&#x2F;dl.fbaipublicfiles.com&#x2F;fairseq&#x2F;models&#x2F;roberta.large.tar.gztar -xzvf roberta.large.tar.gz# Load the model in fairseqfrom fa">
+  <meta name="description" content="RoBERTa Usagegit clone https:&#x2F;&#x2F;github.com&#x2F;pytorch&#x2F;fairseq.git cd fairseq For MacOS: CFLAGS&#x3D;&quot;-stdlib&#x3D;libc++&quot; pip install --editable .&#x2F; 接下来可以参考https:&#x2F;&#x2F;github.com&#x2F;pytorch&#x2F;fairseq&#x2F;blob&#x2F;master&#x2F;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
 <meta property="og:url" content="http://example.com/2020/12/24/RoBERTa%20Usage/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="RoBERTa UsageLoad RoBERTa12345678# Download roberta.large modelwget https:&#x2F;&#x2F;dl.fbaipublicfiles.com&#x2F;fairseq&#x2F;models&#x2F;roberta.large.tar.gztar -xzvf roberta.large.tar.gz# Load the model in fairseqfrom fa">
+<meta property="og:description" content="RoBERTa Usagegit clone https:&#x2F;&#x2F;github.com&#x2F;pytorch&#x2F;fairseq.git cd fairseq For MacOS: CFLAGS&#x3D;&quot;-stdlib&#x3D;libc++&quot; pip install --editable .&#x2F; 接下来可以参考https:&#x2F;&#x2F;github.com&#x2F;pytorch&#x2F;fairseq&#x2F;blob&#x2F;master&#x2F;">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-12-24T03:35:42.659Z">
-<meta property="article:modified_time" content="2020-12-24T03:35:42.659Z">
+<meta property="article:modified_time" content="2020-12-25T05:23:49.569Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -87,9 +87,18 @@
       
         <hr>
 <hr>
-<h1 id="RoBERTa-Usage"><a href="#RoBERTa-Usage" class="headerlink" title="RoBERTa Usage"></a>RoBERTa Usage</h1><h4 id="Load-RoBERTa"><a href="#Load-RoBERTa" class="headerlink" title="Load RoBERTa"></a>Load RoBERTa</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Download roberta.large model</span></span><br><span class="line">wget https://dl.fbaipublicfiles.com/fairseq/models/roberta.large.tar.gz</span><br><span class="line">tar -xzvf roberta.large.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># Load the model in fairseq</span></span><br><span class="line"><span class="keyword">from</span> fairseq.models.roberta <span class="keyword">import</span> RobertaModel</span><br><span class="line">roberta = RobertaModel.from_pretrained(<span class="string">&#x27;/path/to/roberta.large&#x27;</span>, checkpoint_file=<span class="string">&#x27;model.pt&#x27;</span>)</span><br><span class="line">roberta.<span class="built_in">eval</span>()  <span class="comment"># disable dropout (or leave in train mode to finetune)</span></span><br></pre></td></tr></table></figure>
-
-
+<h1 id="RoBERTa-Usage"><a href="#RoBERTa-Usage" class="headerlink" title="RoBERTa Usage"></a>RoBERTa Usage</h1><p><code>git clone https://github.com/pytorch/fairseq.git</code></p>
+<p><code>cd fairseq</code></p>
+<p>For MacOS:</p>
+<p><code>CFLAGS=&quot;-stdlib=libc++&quot; pip install --editable ./</code></p>
+<p>接下来可以参考<a target="_blank" rel="noopener" href="https://github.com/pytorch/fairseq/blob/master/examples/roberta/README.pretraining.md">https://github.com/pytorch/fairseq/blob/master/examples/roberta/README.pretraining.md</a> </p>
+<p>下载数据集<em>WikiText-103</em>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https:<span class="comment">//s3.amazonaws.com/research.metamind.io/wikitext/wikitext-103-raw-v1.zip</span></span><br><span class="line">unzip wikitext-<span class="number">103</span>-raw-v1.zip</span><br></pre></td></tr></table></figure>
+<p>将数据集按照GPT-2 BPE进行编码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p gpt2_bpe</span><br><span class="line">wget -O gpt2_bpe/encoder.json https:<span class="comment">//dl.fbaipublicfiles.com/fairseq/gpt2_bpe/encoder.json</span></span><br><span class="line">wget -O gpt2_bpe/vocab.bpe https:<span class="comment">//dl.fbaipublicfiles.com/fairseq/gpt2_bpe/vocab.bpe</span></span><br><span class="line"><span class="keyword">for</span> SPLIT <span class="keyword">in</span> train valid test; <span class="keyword">do</span> \</span><br><span class="line">    python -m examples.roberta.multiprocessing_bpe_encoder \</span><br><span class="line">        --encoder-json gpt2_bpe/encoder.json \</span><br><span class="line">        --vocab-bpe gpt2_bpe/vocab.bpe \</span><br><span class="line">        --inputs wikitext-<span class="number">103</span>-raw/wiki.$&#123;SPLIT&#125;.raw \</span><br><span class="line">        --outputs wikitext-<span class="number">103</span>-raw/wiki.$&#123;SPLIT&#125;.bpe \</span><br><span class="line">        --keep-empty \</span><br><span class="line">        --workers <span class="number">60</span>; \</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">wget -O gpt2_bpe/dict.txt https:<span class="comment">//dl.fbaipublicfiles.com/fairseq/gpt2_bpe/dict.txt</span></span><br><span class="line">fairseq-preprocess \</span><br><span class="line">    --only-source \</span><br><span class="line">    --srcdict gpt2_bpe/dict.txt \</span><br><span class="line">    --trainpref wikitext-<span class="number">103</span>-raw/wiki.train.bpe \</span><br><span class="line">    --validpref wikitext-<span class="number">103</span>-raw/wiki.valid.bpe \</span><br><span class="line">    --testpref wikitext-<span class="number">103</span>-raw/wiki.test.bpe \</span><br><span class="line">    --destdir data-bin/wikitext-<span class="number">103</span> \</span><br><span class="line">    --workers <span class="number">60</span></span><br></pre></td></tr></table></figure>
+<p>得到<em>data-bin/wikitext-103</em> 文件夹，文件夹下是预处理好的数据集。</p>
+<p>接下来可以开始训练啦，需要用到GPU资源。</p>
 
       
     </div>
@@ -154,6 +163,10 @@
       <ul>
         
           <li>
+            <a href="/2020/12/25/AttributeError-module-enum-has-no-attribute-IntFlag/">AttributeError: module &#39;enum&#39; has no attribute &#39;IntFlag&#39;</a>
+          </li>
+        
+          <li>
             <a href="/2020/12/25/%E6%9F%A5%E7%9C%8B%E5%BA%93%E7%9A%84%E7%89%88%E6%9C%AC/">查看库的版本</a>
           </li>
         
@@ -167,10 +180,6 @@
         
           <li>
             <a href="/2020/12/24/hexo-blog-in-Mac/">hexo-blog-in-Mac</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/24/Transformers%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/">Transformers预训练模型的使用</a>
           </li>
         
       </ul>
