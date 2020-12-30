@@ -6,15 +6,15 @@
   
   <title>查看库的版本 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="查看Pytorch版本的方法： 进入python交互环境， 12import torchprint(torch.__version__)      查看conda版本： 1conda --version         查看cuda版本： 1nvcc -V">
+  <meta name="description" content="1apt list --installed 1pip list      查看Pytorch版本的方法： 进入python交互环境， 12import torchprint(torch.__version__) 查看conda版本： 1conda --version      查看cuda版本： 1nvcc -V 1torch.version.cuda      查看numpy版本 1pip sh">
 <meta property="og:type" content="article">
 <meta property="og:title" content="查看库的版本">
 <meta property="og:url" content="http://example.com/2020/12/25/%E6%9F%A5%E7%9C%8B%E5%BA%93%E7%9A%84%E7%89%88%E6%9C%AC/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="查看Pytorch版本的方法： 进入python交互环境， 12import torchprint(torch.__version__)      查看conda版本： 1conda --version         查看cuda版本： 1nvcc -V">
+<meta property="og:description" content="1apt list --installed 1pip list      查看Pytorch版本的方法： 进入python交互环境， 12import torchprint(torch.__version__) 查看conda版本： 1conda --version      查看cuda版本： 1nvcc -V 1torch.version.cuda      查看numpy版本 1pip sh">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-12-25T03:36:52.000Z">
-<meta property="article:modified_time" content="2020-12-28T02:57:22.888Z">
+<meta property="article:modified_time" content="2020-12-29T08:32:18.271Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -95,20 +95,18 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <ul>
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt list --installed</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip list</span><br></pre></td></tr></table></figure>
+
+
+
+
+<ul>
 <li><p>查看Pytorch版本的方法：</p>
 <p>进入python交互环境，</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">print(torch.__version__)</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-<ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">print(torch.__version__)</span><br></pre></td></tr></table></figure></li>
 <li><p>查看conda版本：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda --version</span><br></pre></td></tr></table></figure>
-
-
-
 
 
 </li>
@@ -116,8 +114,14 @@
 <ul>
 <li><p>查看cuda版本：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvcc -V</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.version.cuda</span><br></pre></td></tr></table></figure>
 
 
+</li>
+</ul>
+<ul>
+<li><p>查看numpy版本</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip show numpy</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 
@@ -184,6 +188,10 @@
       <ul>
         
           <li>
+            <a href="/2020/12/30/%E7%94%A8docker%E9%83%A8%E7%BD%B2python%E7%8E%AF%E5%A2%83/">用docker部署python环境</a>
+          </li>
+        
+          <li>
             <a href="/2020/12/28/%E5%AD%A6%E4%B9%A0fairseq%E4%B9%8BRoberta/">学习fairseq之Roberta</a>
           </li>
         
@@ -197,10 +205,6 @@
         
           <li>
             <a href="/2020/12/24/Docker%20installation%20in%20Mac/">Docker installation</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/24/hexo-blog-in-Mac/">hexo-blog-in-Mac</a>
           </li>
         
       </ul>

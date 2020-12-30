@@ -71,6 +71,65 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-用docker部署python环境" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/12/30/%E7%94%A8docker%E9%83%A8%E7%BD%B2python%E7%8E%AF%E5%A2%83/" class="article-date">
+  <time class="dt-published" datetime="2020-12-30T04:12:01.000Z" itemprop="datePublished">2020-12-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/12/30/%E7%94%A8docker%E9%83%A8%E7%BD%B2python%E7%8E%AF%E5%A2%83/">用docker部署python环境</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>查找<a target="_blank" rel="noopener" href="https://hub.docker.com/_/python?tab=tags&page=1&ordering=last_updated">dockerhub</a>上的python镜像，拉取镜像</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ docker pull python:<span class="number">3.8</span><span class="number">.7</span>-slim-buster</span><br><span class="line">➜  ~ docker images</span><br></pre></td></tr></table></figure>
+<p><strong>-it：</strong>进入容器命令行模式</p>
+<p><strong>–name：</strong>自定义容器名称，不用的话会自动分配一个名称</p>
+<p><strong>-v ~/mednli:/root/mednli：</strong>将主机目录~/mednli挂载到容器的root/mednli</p>
+<p><strong>python:3.8.7-slim-buster：</strong>要运行的镜像名+TAG</p>
+<p><strong>bash：</strong>进入容器命令行</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ docker run -it --name pytest -v ~<span class="regexp">/mednli:/</span>root/mednli python:<span class="number">3.8</span><span class="number">.7</span>-slim-buster bash</span><br></pre></td></tr></table></figure>
+<p>安装需要的python包</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@e408c3c08685:~# pip install -r ~/mednli/requirements.txt</span><br></pre></td></tr></table></figure>
+<p><code>exit</code>推出docker容器</p>
+<p>查看容器信息</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ docker ps -a</span><br><span class="line">CONTAINER ID   IMAGE                      COMMAND    CREATED       STATUS                      PORTS     NAMES</span><br><span class="line">e408c3c08685   python:<span class="number">3.8</span><span class="number">.7</span>-slim-buster   <span class="string">&quot;bash&quot;</span>     <span class="number">2</span> hours ago   Exited (<span class="number">0</span>) <span class="number">42</span> seconds ago             pytest</span><br><span class="line">3609dfb44e20   hello-world                <span class="string">&quot;/hello&quot;</span>   <span class="number">8</span> days ago    Exited (<span class="number">0</span>) <span class="number">8</span> days ago                 crazy_mendel</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>容器打包📦成镜像</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ docker commit -a <span class="string">&quot;cbl&quot;</span> -m <span class="string">&quot;my python env&quot;</span> e408c3c08685 python_env:v1</span><br></pre></td></tr></table></figure>
+<p><strong>-a：</strong>提交的作者名称</p>
+<p><strong>-m：</strong>提交时的文字说明</p>
+<p><strong>e408c3c08685：</strong>容器ID</p>
+<p><strong>python_env:v1：</strong>镜像名字:TAG</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/30/%E7%94%A8docker%E9%83%A8%E7%BD%B2python%E7%8E%AF%E5%A2%83/" data-id="ckjb2r5yw0000edfyhna25cnw" data-title="用docker部署python环境" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-学习fairseq之Roberta" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2020/12/28/%E5%AD%A6%E4%B9%A0fairseq%E4%B9%8BRoberta/" class="article-date">
@@ -114,10 +173,246 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/home/User/miniconda3/lib/python3<span class="number">.8</span>/site-packages/torch/nn/parallel/distributed.py:<span class="number">397</span>: UserWarning: The <span class="string">`check_reduction`</span> argument <span class="keyword">in</span> <span class="string">`DistributedDataParallel`</span> <span class="built_in">module</span> is deprecated. Please avoid using it.</span><br></pre></td></tr></table></figure>
 
 
-
-
-
-
+<p>8卡服务器运行：</p>
+<p>2020-12-28 15:40:38 | INFO | fairseq.distributed_utils | distributed init (rank 0): tcp://localhost:12737</p>
+<p>2020-12-28 15:40:38 | INFO | fairseq.distributed_utils | distributed init (rank 1): tcp://localhost:12737</p>
+<p>2020-12-28 15:40:38 | INFO | fairseq.distributed_utils | distributed init (rank 2): tcp://localhost:12737</p>
+<p>2020-12-28 15:40:38 | INFO | fairseq.distributed_utils | distributed init (rank 6): tcp://localhost:12737</p>
+<p>2020-12-28 15:40:38 | INFO | fairseq.distributed_utils | distributed init (rank 5): tcp://localhost:12737</p>
+<p>2020-12-28 15:40:38 | INFO | fairseq.distributed_utils | distributed init (rank 3): tcp://localhost:12737</p>
+<p>2020-12-28 15:40:38 | INFO | fairseq.distributed_utils | distributed init (rank 4): tcp://localhost:12737</p>
+<p>2020-12-28 15:40:38 | INFO | fairseq.distributed_utils | distributed init (rank 7): tcp://localhost:12737</p>
+<p>2020-12-28 15:40:45 | INFO | fairseq.distributed_utils | initialized host song1-SYS-4029GP-TRT as rank 5</p>
+<p>2020-12-28 15:40:45 | INFO | fairseq.distributed_utils | initialized host song1-SYS-4029GP-TRT as rank 6</p>
+<p>2020-12-28 15:40:45 | INFO | fairseq.distributed_utils | initialized host song1-SYS-4029GP-TRT as rank 0</p>
+<p>2020-12-28 15:40:45 | INFO | fairseq.distributed_utils | initialized host song1-SYS-4029GP-TRT as rank 7</p>
+<p>2020-12-28 15:40:45 | INFO | fairseq.distributed_utils | initialized host song1-SYS-4029GP-TRT as rank 3</p>
+<p>2020-12-28 15:40:45 | INFO | fairseq.distributed_utils | initialized host song1-SYS-4029GP-TRT as rank 2</p>
+<p>2020-12-28 15:40:45 | INFO | fairseq.distributed_utils | initialized host song1-SYS-4029GP-TRT as rank 4</p>
+<p>2020-12-28 15:40:45 | INFO | fairseq.distributed_utils | initialized host song1-SYS-4029GP-TRT as rank 1</p>
+<p>2020-12-28 15:40:45 | INFO | fairseq_cli.train | {‘_name’: None, ‘common’: {‘_name’: None, ‘no_progress_bar’: False, ‘log_interval’: 1, ‘log_format’: ‘simple’, ‘tensorboard_logdir’: None, ‘wandb_project’: None, ‘azureml_logging’: False, ‘seed’: 1, ‘cpu’: False, ‘tpu’: False, ‘bf16’: False, ‘memory_efficient_bf16’: False, ‘fp16’: True, ‘memory_efficient_fp16’: False, ‘fp16_no_flatten_grads’: False, ‘fp16_init_scale’: 128, ‘fp16_scale_window’: None, ‘fp16_scale_tolerance’: 0.0, ‘min_loss_scale’: 0.0001, ‘threshold_loss_scale’: None, ‘user_dir’: None, ‘empty_cache_freq’: 0, ‘all_gather_list_size’: 16384, ‘model_parallel_size’: 1, ‘quantization_config_path’: None, ‘profile’: False, ‘reset_logging’: True}, ‘common_eval’: {‘_name’: None, ‘path’: None, ‘post_process’: None, ‘quiet’: False, ‘model_overrides’: ‘{}’, ‘results_path’: None}, ‘distributed_training’: {‘_name’: None, ‘distributed_world_size’: 8, ‘distributed_rank’: 0, ‘distributed_backend’: ‘nccl’, ‘distributed_init_method’: ‘tcp://localhost:12737’, ‘distributed_port’: -1, ‘device_id’: 0, ‘distributed_no_spawn’: False, ‘ddp_backend’: ‘c10d’, ‘bucket_cap_mb’: 25, ‘fix_batches_to_gpus’: False, ‘find_unused_parameters’: False, ‘fast_stat_sync’: False, ‘heartbeat_timeout’: -1, ‘broadcast_buffers’: False, ‘distributed_wrapper’: ‘DDP’, ‘slowmo_momentum’: None, ‘slowmo_algorithm’: ‘LocalSGD’, ‘localsgd_frequency’: 3, ‘nprocs_per_node’: 8, ‘pipeline_model_parallel’: False, ‘pipeline_balance’: None, ‘pipeline_devices’: None, ‘pipeline_chunks’: 0, ‘pipeline_encoder_balance’: None, ‘pipeline_encoder_devices’: None, ‘pipeline_decoder_balance’: None, ‘pipeline_decoder_devices’: None, ‘pipeline_checkpoint’: ‘never’, ‘zero_sharding’: ‘none’, ‘tpu’: False, ‘distributed_num_procs’: 8}, ‘dataset’: {‘_name’: None, ‘num_workers’: 1, ‘skip_invalid_size_inputs_valid_test’: False, ‘max_tokens’: None, ‘batch_size’: 16, ‘required_batch_size_multiple’: 8, ‘required_seq_len_multiple’: 1, ‘dataset_impl’: None, ‘data_buffer_size’: 10, ‘train_subset’: ‘train’, ‘valid_subset’: ‘valid’, ‘validate_interval’: 1, ‘validate_interval_updates’: 0, ‘validate_after_updates’: 0, ‘fixed_validation_seed’: None, ‘disable_validation’: False, ‘max_tokens_valid’: None, ‘batch_size_valid’: 16, ‘curriculum’: 0, ‘gen_subset’: ‘test’, ‘num_shards’: 1, ‘shard_id’: 0}, ‘optimization’: {‘_name’: None, ‘max_epoch’: 0, ‘max_update’: 125000, ‘stop_time_hours’: 0.0, ‘clip_norm’: 0.0, ‘sentence_avg’: False, ‘update_freq’: [16], ‘lr’: [0.0005], ‘stop_min_lr’: -1.0, ‘use_bmuf’: False}, ‘checkpoint’: {‘_name’: None, ‘save_dir’: ‘checkpoints’, ‘restore_file’: ‘checkpoint_last.pt’, ‘finetune_from_model’: None, ‘reset_dataloader’: False, ‘reset_lr_scheduler’: False, ‘reset_meters’: False, ‘reset_optimizer’: False, ‘optimizer_overrides’: ‘{}’, ‘save_interval’: 1, ‘save_interval_updates’: 0, ‘keep_interval_updates’: -1, ‘keep_last_epochs’: -1, ‘keep_best_checkpoints’: -1, ‘no_save’: False, ‘no_epoch_checkpoints’: False, ‘no_last_checkpoints’: False, ‘no_save_optimizer_state’: False, ‘best_checkpoint_metric’: ‘loss’, ‘maximize_best_checkpoint_metric’: False, ‘patience’: -1, ‘checkpoint_suffix’: ‘’, ‘checkpoint_shard_count’: 1, ‘load_checkpoint_on_all_dp_ranks’: False, ‘model_parallel_size’: 1, ‘distributed_rank’: 0}, ‘bmuf’: {‘_name’: None, ‘block_lr’: 1.0, ‘block_momentum’: 0.875, ‘global_sync_iter’: 50, ‘warmup_iterations’: 500, ‘use_nbm’: False, ‘average_sync’: False, ‘distributed_world_size’: 8}, ‘generation’: {‘_name’: None, ‘beam’: 5, ‘nbest’: 1, ‘max_len_a’: 0.0, ‘max_len_b’: 200, ‘min_len’: 1, ‘match_source_len’: False, ‘unnormalized’: False, ‘no_early_stop’: False, ‘no_beamable_mm’: False, ‘lenpen’: 1.0, ‘unkpen’: 0.0, ‘replace_unk’: None, ‘sacrebleu’: False, ‘score_reference’: False, ‘prefix_size’: 0, ‘no_repeat_ngram_size’: 0, ‘sampling’: False, ‘sampling_topk’: -1, ‘sampling_topp’: -1.0, ‘constraints’: None, ‘temperature’: 1.0, ‘diverse_beam_groups’: -1, ‘diverse_beam_strength’: 0.5, ‘diversity_rate’: -1.0, ‘print_alignment’: None, ‘print_step’: False, ‘lm_path’: None, ‘lm_weight’: 0.0, ‘iter_decode_eos_penalty’: 0.0, ‘iter_decode_max_iter’: 10, ‘iter_decode_force_max_iter’: False, ‘iter_decode_with_beam’: 1, ‘iter_decode_with_external_reranker’: False, ‘retain_iter_history’: False, ‘retain_dropout’: False, ‘retain_dropout_modules’: None, ‘decoding_format’: None, ‘no_seed_provided’: False}, ‘eval_lm’: {‘_name’: None, ‘output_word_probs’: False, ‘output_word_stats’: False, ‘context_window’: 0, ‘softmax_batch’: 9223372036854775807}, ‘interactive’: {‘_name’: None, ‘buffer_size’: 0, ‘input’: ‘-‘}, ‘model’: Namespace(_name=’roberta_base’, activation_dropout=0.0, activation_fn=’gelu’, adam_betas=’(0.9,0.98)’, adam_eps=1e-06, all_gather_list_size=16384, arch=’roberta_base’, attention_dropout=0.1, azureml_logging=False, batch_size=16, batch_size_valid=16, best_checkpoint_metric=’loss’, bf16=False, bpe=None, broadcast_buffers=False, bucket_cap_mb=25, checkpoint_shard_count=1, checkpoint_suffix=’’, clip_norm=0.0, cpu=False, criterion=’masked_lm’, curriculum=0, data=’data-bin/wikitext-103’, data_buffer_size=10, dataset_impl=None, ddp_backend=’c10d’, device_id=0, disable_validation=False, distributed_backend=’nccl’, distributed_init_method=None, distributed_no_spawn=False, distributed_port=-1, distributed_rank=0, distributed_world_size=8, distributed_wrapper=’DDP’, dropout=0.1, empty_cache_freq=0, encoder_attention_heads=12, encoder_embed_dim=768, encoder_ffn_embed_dim=3072, encoder_layerdrop=0, encoder_layers=12, encoder_layers_to_keep=None, end_learning_rate=0.0, eos=2, fast_stat_sync=False, find_unused_parameters=False, finetune_from_model=None, fix_batches_to_gpus=False, fixed_validation_seed=None, force_anneal=None, fp16=True, fp16_init_scale=128, fp16_no_flatten_grads=False, fp16_scale_tolerance=0.0, fp16_scale_window=None, freq_weighted_replacement=False, gen_subset=’test’, heartbeat_timeout=-1, keep_best_checkpoints=-1, keep_interval_updates=-1, keep_last_epochs=-1, leave_unmasked_prob=0.1, load_checkpoint_on_all_dp_ranks=False, localsgd_frequency=3, log_format=’simple’, log_interval=1, lr=[0.0005], lr_scheduler=’polynomial_decay’, mask_multiple_length=1, mask_prob=0.15, mask_stdev=0.0, mask_whole_words=False, max_epoch=0, max_tokens=None, max_tokens_valid=None, max_update=125000, maximize_best_checkpoint_metric=False, memory_efficient_bf16=False, memory_efficient_fp16=False, min_loss_scale=0.0001, model_parallel_size=1, no_epoch_checkpoints=False, no_last_checkpoints=False, no_progress_bar=False, no_save=False, no_save_optimizer_state=False, no_seed_provided=False, nprocs_per_node=8, num_shards=1, num_workers=1, optimizer=’adam’, optimizer_overrides=’{}’, pad=1, patience=-1, pipeline_balance=None, pipeline_checkpoint=’never’, pipeline_chunks=0, pipeline_decoder_balance=None, pipeline_decoder_devices=None, pipeline_devices=None, pipeline_encoder_balance=None, pipeline_encoder_devices=None, pipeline_model_parallel=False, pooler_activation_fn=’tanh’, pooler_dropout=0.0, power=1.0, profile=False, quant_noise_pq=0, quant_noise_pq_block_size=8, quant_noise_scalar=0, quantization_config_path=None, random_token_prob=0.1, required_batch_size_multiple=8, required_seq_len_multiple=1, reset_dataloader=False, reset_logging=True, reset_lr_scheduler=False, reset_meters=False, reset_optimizer=False, restore_file=’checkpoint_last.pt’, sample_break_mode=’complete’, save_dir=’checkpoints’, save_interval=1, save_interval_updates=0, scoring=’bleu’, seed=1, sentence_avg=False, shard_id=0, shorten_data_split_list=’’, shorten_method=’none’, skip_invalid_size_inputs_valid_test=False, slowmo_algorithm=’LocalSGD’, slowmo_momentum=None, spectral_norm_classification_head=False, stop_min_lr=-1.0, stop_time_hours=0, task=’masked_lm’, tensorboard_logdir=None, threshold_loss_scale=None, tokenizer=None, tokens_per_sample=512, total_num_update=’125000’, tpu=False, train_subset=’train’, unk=3, untie_weights_roberta=False, update_freq=[16], use_bmuf=False, use_old_adam=False, user_dir=None, valid_subset=’valid’, validate_after_updates=0, validate_interval=1, validate_interval_updates=0, wandb_project=None, warmup_updates=10000, weight_decay=0.01, zero_sharding=’none’), ‘task’: Namespace(_name=’masked_lm’, activation_dropout=0.0, activation_fn=’gelu’, adam_betas=’(0.9,0.98)’, adam_eps=1e-06, all_gather_list_size=16384, arch=’roberta_base’, attention_dropout=0.1, azureml_logging=False, batch_size=16, batch_size_valid=16, best_checkpoint_metric=’loss’, bf16=False, bpe=None, broadcast_buffers=False, bucket_cap_mb=25, checkpoint_shard_count=1, checkpoint_suffix=’’, clip_norm=0.0, cpu=False, criterion=’masked_lm’, curriculum=0, data=’data-bin/wikitext-103’, data_buffer_size=10, dataset_impl=None, ddp_backend=’c10d’, device_id=0, disable_validation=False, distributed_backend=’nccl’, distributed_init_method=None, distributed_no_spawn=False, distributed_port=-1, distributed_rank=0, distributed_world_size=8, distributed_wrapper=’DDP’, dropout=0.1, empty_cache_freq=0, encoder_attention_heads=12, encoder_embed_dim=768, encoder_ffn_embed_dim=3072, encoder_layerdrop=0, encoder_layers=12, encoder_layers_to_keep=None, end_learning_rate=0.0, eos=2, fast_stat_sync=False, find_unused_parameters=False, finetune_from_model=None, fix_batches_to_gpus=False, fixed_validation_seed=None, force_anneal=None, fp16=True, fp16_init_scale=128, fp16_no_flatten_grads=False, fp16_scale_tolerance=0.0, fp16_scale_window=None, freq_weighted_replacement=False, gen_subset=’test’, heartbeat_timeout=-1, keep_best_checkpoints=-1, keep_interval_updates=-1, keep_last_epochs=-1, leave_unmasked_prob=0.1, load_checkpoint_on_all_dp_ranks=False, localsgd_frequency=3, log_format=’simple’, log_interval=1, lr=[0.0005], lr_scheduler=’polynomial_decay’, mask_multiple_length=1, mask_prob=0.15, mask_stdev=0.0, mask_whole_words=False, max_epoch=0, max_tokens=None, max_tokens_valid=None, max_update=125000, maximize_best_checkpoint_metric=False, memory_efficient_bf16=False, memory_efficient_fp16=False, min_loss_scale=0.0001, model_parallel_size=1, no_epoch_checkpoints=False, no_last_checkpoints=False, no_progress_bar=False, no_save=False, no_save_optimizer_state=False, no_seed_provided=False, nprocs_per_node=8, num_shards=1, num_workers=1, optimizer=’adam’, optimizer_overrides=’{}’, pad=1, patience=-1, pipeline_balance=None, pipeline_checkpoint=’never’, pipeline_chunks=0, pipeline_decoder_balance=None, pipeline_decoder_devices=None, pipeline_devices=None, pipeline_encoder_balance=None, pipeline_encoder_devices=None, pipeline_model_parallel=False, pooler_activation_fn=’tanh’, pooler_dropout=0.0, power=1.0, profile=False, quant_noise_pq=0, quant_noise_pq_block_size=8, quant_noise_scalar=0, quantization_config_path=None, random_token_prob=0.1, required_batch_size_multiple=8, required_seq_len_multiple=1, reset_dataloader=False, reset_logging=True, reset_lr_scheduler=False, reset_meters=False, reset_optimizer=False, restore_file=’checkpoint_last.pt’, sample_break_mode=’complete’, save_dir=’checkpoints’, save_interval=1, save_interval_updates=0, scoring=’bleu’, seed=1, sentence_avg=False, shard_id=0, shorten_data_split_list=’’, shorten_method=’none’, skip_invalid_size_inputs_valid_test=False, slowmo_algorithm=’LocalSGD’, slowmo_momentum=None, spectral_norm_classification_head=False, stop_min_lr=-1.0, stop_time_hours=0, task=’masked_lm’, tensorboard_logdir=None, threshold_loss_scale=None, tokenizer=None, tokens_per_sample=512, total_num_update=’125000’, tpu=False, train_subset=’train’, unk=3, untie_weights_roberta=False, update_freq=[16], use_bmuf=False, use_old_adam=False, user_dir=None, valid_subset=’valid’, validate_after_updates=0, validate_interval=1, validate_interval_updates=0, wandb_project=None, warmup_updates=10000, weight_decay=0.01, zero_sharding=’none’), ‘criterion’: Namespace(_name=’masked_lm’, activation_dropout=0.0, activation_fn=’gelu’, adam_betas=’(0.9,0.98)’, adam_eps=1e-06, all_gather_list_size=16384, arch=’roberta_base’, attention_dropout=0.1, azureml_logging=False, batch_size=16, batch_size_valid=16, best_checkpoint_metric=’loss’, bf16=False, bpe=None, broadcast_buffers=False, bucket_cap_mb=25, checkpoint_shard_count=1, checkpoint_suffix=’’, clip_norm=0.0, cpu=False, criterion=’masked_lm’, curriculum=0, data=’data-bin/wikitext-103’, data_buffer_size=10, dataset_impl=None, ddp_backend=’c10d’, device_id=0, disable_validation=False, distributed_backend=’nccl’, distributed_init_method=None, distributed_no_spawn=False, distributed_port=-1, distributed_rank=0, distributed_world_size=8, distributed_wrapper=’DDP’, dropout=0.1, empty_cache_freq=0, encoder_attention_heads=12, encoder_embed_dim=768, encoder_ffn_embed_dim=3072, encoder_layerdrop=0, encoder_layers=12, encoder_layers_to_keep=None, end_learning_rate=0.0, eos=2, fast_stat_sync=False, find_unused_parameters=False, finetune_from_model=None, fix_batches_to_gpus=False, fixed_validation_seed=None, force_anneal=None, fp16=True, fp16_init_scale=128, fp16_no_flatten_grads=False, fp16_scale_tolerance=0.0, fp16_scale_window=None, freq_weighted_replacement=False, gen_subset=’test’, heartbeat_timeout=-1, keep_best_checkpoints=-1, keep_interval_updates=-1, keep_last_epochs=-1, leave_unmasked_prob=0.1, load_checkpoint_on_all_dp_ranks=False, localsgd_frequency=3, log_format=’simple’, log_interval=1, lr=[0.0005], lr_scheduler=’polynomial_decay’, mask_multiple_length=1, mask_prob=0.15, mask_stdev=0.0, mask_whole_words=False, max_epoch=0, max_tokens=None, max_tokens_valid=None, max_update=125000, maximize_best_checkpoint_metric=False, memory_efficient_bf16=False, memory_efficient_fp16=False, min_loss_scale=0.0001, model_parallel_size=1, no_epoch_checkpoints=False, no_last_checkpoints=False, no_progress_bar=False, no_save=False, no_save_optimizer_state=False, no_seed_provided=False, nprocs_per_node=8, num_shards=1, num_workers=1, optimizer=’adam’, optimizer_overrides=’{}’, pad=1, patience=-1, pipeline_balance=None, pipeline_checkpoint=’never’, pipeline_chunks=0, pipeline_decoder_balance=None, pipeline_decoder_devices=None, pipeline_devices=None, pipeline_encoder_balance=None, pipeline_encoder_devices=None, pipeline_model_parallel=False, pooler_activation_fn=’tanh’, pooler_dropout=0.0, power=1.0, profile=False, quant_noise_pq=0, quant_noise_pq_block_size=8, quant_noise_scalar=0, quantization_config_path=None, random_token_prob=0.1, required_batch_size_multiple=8, required_seq_len_multiple=1, reset_dataloader=False, reset_logging=True, reset_lr_scheduler=False, reset_meters=False, reset_optimizer=False, restore_file=’checkpoint_last.pt’, sample_break_mode=’complete’, save_dir=’checkpoints’, save_interval=1, save_interval_updates=0, scoring=’bleu’, seed=1, sentence_avg=False, shard_id=0, shorten_data_split_list=’’, shorten_method=’none’, skip_invalid_size_inputs_valid_test=False, slowmo_algorithm=’LocalSGD’, slowmo_momentum=None, spectral_norm_classification_head=False, stop_min_lr=-1.0, stop_time_hours=0, task=’masked_lm’, tensorboard_logdir=None, threshold_loss_scale=None, tokenizer=None, tokens_per_sample=512, total_num_update=’125000’, tpu=False, train_subset=’train’, unk=3, untie_weights_roberta=False, update_freq=[16], use_bmuf=False, use_old_adam=False, user_dir=None, valid_subset=’valid’, validate_after_updates=0, validate_interval=1, validate_interval_updates=0, wandb_project=None, warmup_updates=10000, weight_decay=0.01, zero_sharding=’none’), ‘optimizer’: {‘_name’: ‘adam’, ‘adam_betas’: ‘(0.9,0.98)’, ‘adam_eps’: 1e-06, ‘weight_decay’: 0.01, ‘use_old_adam’: False, ‘tpu’: False, ‘lr’: [0.0005]}, ‘lr_scheduler’: {‘_name’: ‘polynomial_decay’, ‘warmup_updates’: 10000, ‘force_anneal’: None, ‘end_learning_rate’: 0.0, ‘power’: 1.0, ‘total_num_update’: 125000.0, ‘lr’: [0.0005]}, ‘scoring’: {‘_name’: ‘bleu’, ‘pad’: 1, ‘eos’: 2, ‘unk’: 3}, ‘bpe’: None, ‘tokenizer’: None}</p>
+<p>2020-12-28 15:40:45 | INFO | fairseq.tasks.masked_lm | dictionary: 50264 types</p>
+<p>2020-12-28 15:40:45 | INFO | fairseq.data.data_utils | loaded 3760 examples from: data-bin/wikitext-103/valid</p>
+<p>2020-12-28 15:40:45 | INFO | fairseq.tasks.masked_lm | loaded 580 blocks from: data-bin/wikitext-103/valid</p>
+<p>2020-12-28 15:40:51 | INFO | fairseq_cli.train | RobertaModel(</p>
+<p> (encoder): RobertaEncoder(</p>
+<p>  (sentence_encoder): TransformerSentenceEncoder(</p>
+<p>   (dropout_module): FairseqDropout()</p>
+<p>   (embed_tokens): Embedding(50265, 768, padding_idx=1)</p>
+<p>   (embed_positions): LearnedPositionalEmbedding(514, 768, padding_idx=1)</p>
+<p>   (layers): ModuleList(</p>
+<p>​    (0): TransformerSentenceEncoderLayer(</p>
+<p>​     (dropout_module): FairseqDropout()</p>
+<p>​     (activation_dropout_module): FairseqDropout()</p>
+<p>​     (self_attn): MultiheadAttention(</p>
+<p>​      (dropout_module): FairseqDropout()</p>
+<p>​      (k_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (v_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (q_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (out_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​     )</p>
+<p>​     (self_attn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</p>
+<p>​     (fc1): Linear(in_features=768, out_features=3072, bias=True)</p>
+<p>​     (fc2): Linear(in_features=3072, out_features=768, bias=True)</p>
+<p>​     (final_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</p>
+<p>​    )</p>
+<p>​    (1): TransformerSentenceEncoderLayer(</p>
+<p>​     (dropout_module): FairseqDropout()</p>
+<p>​     (activation_dropout_module): FairseqDropout()</p>
+<p>​     (self_attn): MultiheadAttention(</p>
+<p>​      (dropout_module): FairseqDropout()</p>
+<p>​      (k_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (v_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (q_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (out_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​     )</p>
+<p>​     (self_attn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</p>
+<p>​     (fc1): Linear(in_features=768, out_features=3072, bias=True)</p>
+<p>​     (fc2): Linear(in_features=3072, out_features=768, bias=True)</p>
+<p>​     (final_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</p>
+<p>​    )</p>
+<p>​    (2): TransformerSentenceEncoderLayer(</p>
+<p>​     (dropout_module): FairseqDropout()</p>
+<p>​     (activation_dropout_module): FairseqDropout()</p>
+<p>​     (self_attn): MultiheadAttention(</p>
+<p>​      (dropout_module): FairseqDropout()</p>
+<p>​      (k_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (v_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (q_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (out_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​     )</p>
+<p>​     (self_attn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</p>
+<p>​     (fc1): Linear(in_features=768, out_features=3072, bias=True)</p>
+<p>​     (fc2): Linear(in_features=3072, out_features=768, bias=True)</p>
+<p>​     (final_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</p>
+<p>​    )</p>
+<p>​    (3): TransformerSentenceEncoderLayer(</p>
+<p>​     (dropout_module): FairseqDropout()</p>
+<p>​     (activation_dropout_module): FairseqDropout()</p>
+<p>​     (self_attn): MultiheadAttention(</p>
+<p>​      (dropout_module): FairseqDropout()</p>
+<p>​      (k_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (v_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (q_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (out_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​     )</p>
+<p>​     (self_attn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</p>
+<p>​     (fc1): Linear(in_features=768, out_features=3072, bias=True)</p>
+<p>​     (fc2): Linear(in_features=3072, out_features=768, bias=True)</p>
+<p>​     (final_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</p>
+<p>​    )</p>
+<p>​    (4): TransformerSentenceEncoderLayer(</p>
+<p>​     (dropout_module): FairseqDropout()</p>
+<p>​     (activation_dropout_module): FairseqDropout()</p>
+<p>​     (self_attn): MultiheadAttention(</p>
+<p>​      (dropout_module): FairseqDropout()</p>
+<p>​      (k_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (v_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (q_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (out_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​     )</p>
+<p>​     (self_attn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</p>
+<p>​     (fc1): Linear(in_features=768, out_features=3072, bias=True)</p>
+<p>​     (fc2): Linear(in_features=3072, out_features=768, bias=True)</p>
+<p>​     (final_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</p>
+<p>​    )</p>
+<p>​    (5): TransformerSentenceEncoderLayer(</p>
+<p>​     (dropout_module): FairseqDropout()</p>
+<p>​     (activation_dropout_module): FairseqDropout()</p>
+<p>​     (self_attn): MultiheadAttention(</p>
+<p>​      (dropout_module): FairseqDropout()</p>
+<p>​      (k_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (v_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (q_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (out_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​     )</p>
+<p>​     (self_attn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</p>
+<p>​     (fc1): Linear(in_features=768, out_features=3072, bias=True)</p>
+<p>​     (fc2): Linear(in_features=3072, out_features=768, bias=True)</p>
+<p>​     (final_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</p>
+<p>​    )</p>
+<p>​    (6): TransformerSentenceEncoderLayer(</p>
+<p>​     (dropout_module): FairseqDropout()</p>
+<p>​     (activation_dropout_module): FairseqDropout()</p>
+<p>​     (self_attn): MultiheadAttention(</p>
+<p>​      (dropout_module): FairseqDropout()</p>
+<p>​      (k_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (v_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (q_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (out_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​     )</p>
+<p>​     (self_attn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</p>
+<p>​     (fc1): Linear(in_features=768, out_features=3072, bias=True)</p>
+<p>​     (fc2): Linear(in_features=3072, out_features=768, bias=True)</p>
+<p>​     (final_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</p>
+<p>​    )</p>
+<p>​    (7): TransformerSentenceEncoderLayer(</p>
+<p>​     (dropout_module): FairseqDropout()</p>
+<p>​     (activation_dropout_module): FairseqDropout()</p>
+<p>​     (self_attn): MultiheadAttention(</p>
+<p>​      (dropout_module): FairseqDropout()</p>
+<p>​      (k_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (v_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (q_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (out_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​     )</p>
+<p>​     (self_attn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</p>
+<p>​     (fc1): Linear(in_features=768, out_features=3072, bias=True)</p>
+<p>​     (fc2): Linear(in_features=3072, out_features=768, bias=True)</p>
+<p>​     (final_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</p>
+<p>​    )</p>
+<p>​    (8): TransformerSentenceEncoderLayer(</p>
+<p>​     (dropout_module): FairseqDropout()</p>
+<p>​     (activation_dropout_module): FairseqDropout()</p>
+<p>​     (self_attn): MultiheadAttention(</p>
+<p>​      (dropout_module): FairseqDropout()</p>
+<p>​      (k_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (v_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (q_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (out_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​     )</p>
+<p>​     (self_attn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</p>
+<p>​     (fc1): Linear(in_features=768, out_features=3072, bias=True)</p>
+<p>​     (fc2): Linear(in_features=3072, out_features=768, bias=True)</p>
+<p>​     (final_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</p>
+<p>​    )</p>
+<p>​    (9): TransformerSentenceEncoderLayer(</p>
+<p>​     (dropout_module): FairseqDropout()</p>
+<p>​     (activation_dropout_module): FairseqDropout()</p>
+<p>​     (self_attn): MultiheadAttention(</p>
+<p>​      (dropout_module): FairseqDropout()</p>
+<p>​      (k_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (v_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (q_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (out_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​     )</p>
+<p>​     (self_attn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</p>
+<p>​     (fc1): Linear(in_features=768, out_features=3072, bias=True)</p>
+<p>​     (fc2): Linear(in_features=3072, out_features=768, bias=True)</p>
+<p>​     (final_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</p>
+<p>​    )</p>
+<p>​    (10): TransformerSentenceEncoderLayer(</p>
+<p>​     (dropout_module): FairseqDropout()</p>
+<p>​     (activation_dropout_module): FairseqDropout()</p>
+<p>​     (self_attn): MultiheadAttention(</p>
+<p>​      (dropout_module): FairseqDropout()</p>
+<p>​      (k_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (v_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (q_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (out_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​     )</p>
+<p>​     (self_attn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</p>
+<p>​     (fc1): Linear(in_features=768, out_features=3072, bias=True)</p>
+<p>​     (fc2): Linear(in_features=3072, out_features=768, bias=True)</p>
+<p>​     (final_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</p>
+<p>​    )</p>
+<p>​    (11): TransformerSentenceEncoderLayer(</p>
+<p>​     (dropout_module): FairseqDropout()</p>
+<p>​     (activation_dropout_module): FairseqDropout()</p>
+<p>​     (self_attn): MultiheadAttention(</p>
+<p>​      (dropout_module): FairseqDropout()</p>
+<p>​      (k_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (v_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (q_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​      (out_proj): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>​     )</p>
+<p>​     (self_attn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</p>
+<p>​     (fc1): Linear(in_features=768, out_features=3072, bias=True)</p>
+<p>​     (fc2): Linear(in_features=3072, out_features=768, bias=True)</p>
+<p>​     (final_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</p>
+<p>​    )</p>
+<p>   )</p>
+<p>   (emb_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</p>
+<p>  )</p>
+<p>  (lm_head): RobertaLMHead(</p>
+<p>   (dense): Linear(in_features=768, out_features=768, bias=True)</p>
+<p>   (layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</p>
+<p>  )</p>
+<p> )</p>
+<p> (classification_heads): ModuleDict()</p>
+<p>)</p>
+<p>2020-12-28 15:40:51 | INFO | fairseq_cli.train | task: MaskedLMTask</p>
+<p>2020-12-28 15:40:51 | INFO | fairseq_cli.train | model: RobertaModel</p>
+<p>2020-12-28 15:40:51 | INFO | fairseq_cli.train | criterion: MaskedLmLoss</p>
+<p>2020-12-28 15:40:51 | INFO | fairseq_cli.train | num. model params: 124696665 (num. trained: 124696665)</p>
+<p>2020-12-28 15:40:56 | INFO | fairseq.trainer | detected shared parameter: encoder.sentence_encoder.embed_tokens.weight &lt;- encoder.lm_head.weight</p>
+<p>2020-12-28 15:40:57 | INFO | fairseq.utils | <strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><em>CUDA enviroments for all 8 workers</em></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></p>
+<p>2020-12-28 15:40:57 | INFO | fairseq.utils | rank  0: capabilities = 7.5 ; total memory = 23.653 GB ; name = TITAN RTX                </p>
+<p>2020-12-28 15:40:57 | INFO | fairseq.utils | rank  1: capabilities = 7.5 ; total memory = 23.653 GB ; name = TITAN RTX                </p>
+<p>2020-12-28 15:40:57 | INFO | fairseq.utils | rank  2: capabilities = 7.5 ; total memory = 23.653 GB ; name = TITAN RTX                </p>
+<p>2020-12-28 15:40:57 | INFO | fairseq.utils | rank  3: capabilities = 7.5 ; total memory = 23.653 GB ; name = TITAN RTX                </p>
+<p>2020-12-28 15:40:57 | INFO | fairseq.utils | rank  4: capabilities = 7.5 ; total memory = 23.653 GB ; name = TITAN RTX                </p>
+<p>2020-12-28 15:40:57 | INFO | fairseq.utils | rank  5: capabilities = 7.5 ; total memory = 23.653 GB ; name = TITAN RTX                </p>
+<p>2020-12-28 15:40:57 | INFO | fairseq.utils | rank  6: capabilities = 7.5 ; total memory = 23.653 GB ; name = TITAN RTX                </p>
+<p>2020-12-28 15:40:57 | INFO | fairseq.utils | rank  7: capabilities = 7.5 ; total memory = 23.653 GB ; name = TITAN RTX                </p>
+<p>2020-12-28 15:40:57 | INFO | fairseq.utils | <strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><em>CUDA enviroments for all 8 workers</em></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></p>
+<p>2020-12-28 15:40:57 | INFO | fairseq_cli.train | training on 8 devices (GPUs/TPUs)</p>
+<p>2020-12-28 15:40:57 | INFO | fairseq_cli.train | max tokens per GPU = None and batch size per GPU = 16</p>
+<p>2020-12-28 15:40:57 | INFO | fairseq.trainer | Preparing to load checkpoint checkpoints/checkpoint_last.pt</p>
+<p>2020-12-28 15:40:57 | INFO | fairseq.trainer | No existing checkpoint found checkpoints/checkpoint_last.pt</p>
+<p>2020-12-28 15:40:57 | INFO | fairseq.trainer | loading train data for epoch 1</p>
+<p>2020-12-28 15:40:57 | INFO | fairseq.data.data_utils | loaded 1801350 examples from: data-bin/wikitext-103/train</p>
+<p>2020-12-28 15:40:57 | INFO | fairseq.tasks.masked_lm | loaded 280678 blocks from: data-bin/wikitext-103/train</p>
 <p>$fairseq$模型解析</p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/141210591">https://zhuanlan.zhihu.com/p/141210591</a></p>
 <p>![1](/学习fairseq之Roberta/截屏2020-12-28 下午4.38.11.png)</p>
@@ -200,20 +495,18 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <ul>
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt list --installed</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip list</span><br></pre></td></tr></table></figure>
+
+
+
+
+<ul>
 <li><p>查看Pytorch版本的方法：</p>
 <p>进入python交互环境，</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">print(torch.__version__)</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-<ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">print(torch.__version__)</span><br></pre></td></tr></table></figure></li>
 <li><p>查看conda版本：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda --version</span><br></pre></td></tr></table></figure>
-
-
-
 
 
 </li>
@@ -221,8 +514,14 @@
 <ul>
 <li><p>查看cuda版本：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvcc -V</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.version.cuda</span><br></pre></td></tr></table></figure>
 
 
+</li>
+</ul>
+<ul>
+<li><p>查看numpy版本</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip show numpy</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 
@@ -276,12 +575,18 @@
 <p><code>docker version</code></p>
 <p><code>docker-compose --version</code></p>
 <p><code>docker-machine --version</code></p>
-<p>How to solve <em>command not found docker-machine error</em>?</p>
-<ul>
-<li><p>install Docker Machine</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">base=https:<span class="comment">//github.com/docker/machine/releases/download/v0.16.0 &amp;&amp;</span></span><br><span class="line">  curl -L $base/docker-machine-$(uname -s)-$(uname -m) &gt;<span class="regexp">/usr/</span>local/bin/docker-machine &amp;&amp;</span><br><span class="line">  chmod +x /usr/local/bin/docker-machine</span><br></pre></td></tr></table></figure>
 </li>
+<li><p>How to solve <em>command not found docker-machine error</em>?</p>
+<ul>
+<li>install Docker Machine</li>
 </ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">base=https:<span class="comment">//github.com/docker/machine/releases/download/v0.16.0 &amp;&amp;</span></span><br><span class="line">  curl -L $base/docker-machine-$(uname -s)-$(uname -m) &gt;<span class="regexp">/usr/</span>local/bin/docker-machine &amp;&amp;</span><br><span class="line">  chmod +x /usr/local/bin/docker-machine</span><br></pre></td></tr></table></figure></li>
+<li><p>添加镜像加速器</p>
+<p>注册<a target="_blank" rel="noopener" href="https://homenew.console.aliyun.com/home/scene/ProductAndService">阿里云</a>，获取镜像加速器地址。</p>
+<p>点击Docker图标，Preferences-&gt;Docker Engine，在右侧窗口修改json信息：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;experimental&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="string">&quot;features&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;buildkit&quot;</span>: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;https://14b3r05r.mirror.aliyuncs.com&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>点击Apply and Restart</p>
+<p>输入<code>docker info</code>就可以查看是否添加成功。</p>
 </li>
 </ul>
 
@@ -470,6 +775,10 @@
       <ul>
         
           <li>
+            <a href="/2020/12/30/%E7%94%A8docker%E9%83%A8%E7%BD%B2python%E7%8E%AF%E5%A2%83/">用docker部署python环境</a>
+          </li>
+        
+          <li>
             <a href="/2020/12/28/%E5%AD%A6%E4%B9%A0fairseq%E4%B9%8BRoberta/">学习fairseq之Roberta</a>
           </li>
         
@@ -483,10 +792,6 @@
         
           <li>
             <a href="/2020/12/24/Docker%20installation%20in%20Mac/">Docker installation</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/24/hexo-blog-in-Mac/">hexo-blog-in-Mac</a>
           </li>
         
       </ul>
