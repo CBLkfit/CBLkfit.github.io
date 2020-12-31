@@ -86,7 +86,11 @@
         <p>![image-20201231122853343](/Users/cbl/MyBlog/source/_posts/logistic regression/image-20201231122853343.png)</p>
 <p>![image-20201231135901370](/Users/cbl/MyBlog/source/_posts/logistic regression/image-20201231135901370.png)</p>
 <p>![image-20201231135923774](/Users/cbl/MyBlog/source/_posts/logistic regression/image-20201231135923774.png)</p>
+<img src="/2020/12/31/logistic%20regression/image-20201231122853343.png" class>
 
+<img src="/2020/12/31/logistic%20regression/image-20201231135901370.png" class>
+
+<img src="/2020/12/31/logistic%20regression/image-20201231135923774.png" class>
       
     </div>
     <footer class="article-footer">
@@ -450,7 +454,10 @@
 <p>2020-12-28 15:40:57 | INFO | fairseq.tasks.masked_lm | loaded 280678 blocks from: data-bin/wikitext-103/train</p>
 <p>$fairseq$模型解析</p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/141210591">https://zhuanlan.zhihu.com/p/141210591</a></p>
-<p>![1](/学习fairseq之Roberta/截屏2020-12-28 下午4.38.11.png)</p>
+
+
+
+
 
       
     </div>
@@ -683,13 +690,12 @@
 <ul>
 <li><p>图片添加以及上载问题：</p>
 <p>第一步：安装插件 </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install https:<span class="comment">//github.com/7ym0n/hexo-asset-image --save</span></span><br></pre></td></tr></table></figure>
 <p>第二步：打开hexo配置文件_config.yml</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<p>第三步：打开 node_modules/hexo-asset-image/index.js文件，更换为以下内容：</p>
+<p>第三步：hexo n ‘add_photo’，在source/_posts下生成add_photo.md文件和add_photo文件夹。md文件中添加 ，就可以在博客中显示图片了。</p>
 </li>
 </ul>
-<p>  第四步：验证是否能正确插入图片。hexo n ‘add_photo’，在source/_posts下生成add_photo.md文件和add_photo文件夹。把要插入的图片复制到add_photo文件夹下，在md文件里，用下面的代码就可以插入图片啦。</p>
 
       
     </div>
@@ -756,44 +762,16 @@
 </ul>
 <p><strong>针对网络问题，手动下载，本地加载预训练权重</strong></p>
 <p>网站<a target="_blank" rel="noopener" href="https://huggingface.co/models%E5%8C%85%E5%90%AB%E4%BA%86transformers%E6%94%AF%E6%8C%81%E7%9A%84%E6%89%80%E6%9C%89%E6%A8%A1%E5%9E%8B%EF%BC%8C%E9%80%89%E4%B8%AD%E9%9C%80%E8%A6%81%E4%B8%8B%E8%BD%BD%E7%9A%84%E6%A8%A1%E5%9E%8B%E3%80%82%E4%BB%A5bert-base-uncased%E4%B8%BA%E4%BE%8B%E3%80%82%E7%82%B9%E5%BC%80files">https://huggingface.co/models包含了transformers支持的所有模型，选中需要下载的模型。以bert-base-uncased为例。点开files</a> and versions，可以看到文件列表，找到列表中的config.json，pytorch_model.bin和vocab文件，点击下载图标，下载到指定文件夹bert-base-uncased中。config.json是模型的配置文件，pytorch_model.bin是存储的预训练模型，vocab是字典。</p>
-<p><img src="/Users/cbl/MyBlog/source/_posts/Transformers%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/%E6%9C%AC%E5%9C%B0%E5%8A%A0%E8%BD%BD.png" alt="本地加载"></p>
+<img src="/2020/12/24/Transformers%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/%E6%9C%AC%E5%9C%B0%E5%8A%A0%E8%BD%BD.png" class title="本地加载">
+
+
+
 <p><strong>如何在虚拟环境下运行jupyter notebook</strong></p>
 <p>参考<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/0432155d1bef">https://www.jianshu.com/p/0432155d1bef</a></p>
 <p>为虚拟环境安装ikernel包</p>
 <p><code>pip3 install ipykernel</code></p>
 <p>激活环境</p>
 <p><code>python -m ipykernel install —name env</code></p>
-<p><strong><em>\</em>{****% 本地加载.png This is an test image %**}*\</strong>***</p>
-<img src="/2020/12/24/Transformers%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/%E6%9C%AC%E5%9C%B0%E5%8A%A0%E8%BD%BD.png" class title="本地加载">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       
     </div>

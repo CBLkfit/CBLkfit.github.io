@@ -13,13 +13,12 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Installation 创建虚拟环境  在文件目录下，运行    python3 -m venv env source env&#x2F;bin&#x2F;activate  如果要离开虚拟环境，运行 deactivate  installing from source   git clone https:&#x2F;&#x2F;github.com&#x2F;huggingface&#x2F;transformers.git cd transforme">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/Users/cbl/MyBlog/source/_posts/Transformers%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/%E6%9C%AC%E5%9C%B0%E5%8A%A0%E8%BD%BD.png">
 <meta property="og:image" content="http://example.com/2020/12/24/Transformers%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/%E6%9C%AC%E5%9C%B0%E5%8A%A0%E8%BD%BD.png">
 <meta property="article:published_time" content="2020-12-24T01:50:06.000Z">
-<meta property="article:modified_time" content="2020-12-31T06:58:43.288Z">
+<meta property="article:modified_time" content="2020-12-31T07:00:07.121Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/Users/cbl/MyBlog/source/_posts/Transformers%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/%E6%9C%AC%E5%9C%B0%E5%8A%A0%E8%BD%BD.png">
+<meta name="twitter:image" content="http://example.com/2020/12/24/Transformers%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/%E6%9C%AC%E5%9C%B0%E5%8A%A0%E8%BD%BD.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -126,44 +125,16 @@
 </ul>
 <p><strong>针对网络问题，手动下载，本地加载预训练权重</strong></p>
 <p>网站<a target="_blank" rel="noopener" href="https://huggingface.co/models%E5%8C%85%E5%90%AB%E4%BA%86transformers%E6%94%AF%E6%8C%81%E7%9A%84%E6%89%80%E6%9C%89%E6%A8%A1%E5%9E%8B%EF%BC%8C%E9%80%89%E4%B8%AD%E9%9C%80%E8%A6%81%E4%B8%8B%E8%BD%BD%E7%9A%84%E6%A8%A1%E5%9E%8B%E3%80%82%E4%BB%A5bert-base-uncased%E4%B8%BA%E4%BE%8B%E3%80%82%E7%82%B9%E5%BC%80files">https://huggingface.co/models包含了transformers支持的所有模型，选中需要下载的模型。以bert-base-uncased为例。点开files</a> and versions，可以看到文件列表，找到列表中的config.json，pytorch_model.bin和vocab文件，点击下载图标，下载到指定文件夹bert-base-uncased中。config.json是模型的配置文件，pytorch_model.bin是存储的预训练模型，vocab是字典。</p>
-<p><img src="/Users/cbl/MyBlog/source/_posts/Transformers%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/%E6%9C%AC%E5%9C%B0%E5%8A%A0%E8%BD%BD.png" alt="本地加载"></p>
+<img src="/2020/12/24/Transformers%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/%E6%9C%AC%E5%9C%B0%E5%8A%A0%E8%BD%BD.png" class title="本地加载">
+
+
+
 <p><strong>如何在虚拟环境下运行jupyter notebook</strong></p>
 <p>参考<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/0432155d1bef">https://www.jianshu.com/p/0432155d1bef</a></p>
 <p>为虚拟环境安装ikernel包</p>
 <p><code>pip3 install ipykernel</code></p>
 <p>激活环境</p>
 <p><code>python -m ipykernel install —name env</code></p>
-<p><strong><em>\</em>{****% 本地加载.png This is an test image %**}*\</strong>***</p>
-<img src="/2020/12/24/Transformers%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/%E6%9C%AC%E5%9C%B0%E5%8A%A0%E8%BD%BD.png" class title="本地加载">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       
     </div>
