@@ -71,6 +71,50 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-ssh-免密登陆" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/20/ssh-%E5%85%8D%E5%AF%86%E7%99%BB%E9%99%86/" class="article-date">
+  <time class="dt-published" datetime="2021-01-20T04:29:31.000Z" itemprop="datePublished">2021-01-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/01/20/ssh-%E5%85%8D%E5%AF%86%E7%99%BB%E9%99%86/">ssh 免密登陆</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>在.ssh文件夹下创建公私钥id_rsa和id_rsa.hub</p>
+<p><code>ssh-keygen</code></p>
+<p><code>cd ~/.ssh</code></p>
+<p>上传公钥到服务器</p>
+<p><code>ssh-copy-id -i ~/.ssh/id_rsa.pub root@server_id</code></p>
+<p>ssh连接远程服务器，不用输入密码啦～</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/20/ssh-%E5%85%8D%E5%AF%86%E7%99%BB%E9%99%86/" data-id="ckk4xn5ht0000cmfye51c24bc" data-title="ssh 免密登陆" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-logistic-regression" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2020/12/31/logistic-regression/" class="article-date">
@@ -813,7 +857,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li></ul>
     </div>
   </div>
 
@@ -824,6 +868,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/01/20/ssh-%E5%85%8D%E5%AF%86%E7%99%BB%E9%99%86/">ssh 免密登陆</a>
+          </li>
         
           <li>
             <a href="/2020/12/31/logistic-regression/">logistic regression</a>
@@ -839,10 +887,6 @@
         
           <li>
             <a href="/2020/12/25/AttributeError-module-enum-has-no-attribute-IntFlag/">AttributeError: module &#39;enum&#39; has no attribute &#39;IntFlag&#39;</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/25/%E6%9F%A5%E7%9C%8B%E5%BA%93%E7%9A%84%E7%89%88%E6%9C%AC/">查看库的版本</a>
           </li>
         
       </ul>
